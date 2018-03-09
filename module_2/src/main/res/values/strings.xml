@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">module_2</string>
+    <string name="description_permission">Launch Module Two Activity</string>
+    <string name="email">Email...</string>
+    <string name="permission_activity_module_two">Permission Activity Module Two!</string>
+    <string name="subject">Subject...</string>
+    <string name="body_email_hint">Text...</string>
+    <string name="send_email">Send Email</string>
+</resources>

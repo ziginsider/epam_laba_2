@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">epam_laba_2</string>
+    <string name="permission_denied">Permission denied</string>
+</resources>
