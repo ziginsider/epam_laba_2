@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String PERMISSION_NAME = "io.github.ziginsider.module_2.PERMISSION";
     private static final String MODULE_TWO_ACTION = "io.github.ziginsider.module_2.ACTION";
 
-    Button button;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
