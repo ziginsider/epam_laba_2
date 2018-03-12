@@ -1,6 +1,5 @@
 package io.github.ziginsider.epam_laba_2;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -22,13 +21,12 @@ public class MainActivity extends AppCompatActivity {
     private static final String PERMISSION_NAME = "io.github.ziginsider.module_2.PERMISSION";
     private static final String MODULE_TWO_ACTION = "io.github.ziginsider.module_2.ACTION";
 
-    Button button;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         button = findViewById(R.id.button);
         initRequestPermissionButton();
     }
@@ -36,25 +34,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_PERMISSION) {
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                launchModuleTwoActivity();
-            } else {
-                Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
+        switch (requestCode) {
+            case REQUEST_PERMISSION: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    launchModuleTwoActivity();
+                } else {
+                    Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
+                }
+                break;
+            }
+            default: {
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+                break;
             }
         }
     }
 
-    protected void initRequestPermissionButton() {
-        final Activity activity = this;
-
+    private void initRequestPermissionButton() {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(activity, PERMISSION_NAME)
+                if (ContextCompat.checkSelfPermission(MainActivity.this, PERMISSION_NAME)
                         != PackageManager.PERMISSION_GRANTED) {
-
-                    ActivityCompat.requestPermissions(activity,
+                    ActivityCompat.requestPermissions(MainActivity.this,
                             new String[]{PERMISSION_NAME},
                             REQUEST_PERMISSION);
                 } else {
@@ -66,6 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void launchModuleTwoActivity() {
         Intent intent = new Intent(MODULE_TWO_ACTION);
-        this.startActivity(intent);
+        startActivity(intent);
     }
 }

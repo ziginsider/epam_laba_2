@@ -39,12 +39,11 @@ public class MainModuleTwoActivity extends AppCompatActivity {
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailField.getText().toString()});
                 intent.putExtra(Intent.EXTRA_SUBJECT, subjectField.getText().toString());
                 intent.putExtra(Intent.EXTRA_TEXT, bodyField.getText().toString());
-
                 try {
                     startActivity(Intent.createChooser(intent,
                             getResources().getString(R.string.send_email)));
                 } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(v.getContext(),
+                    Toast.makeText(MainModuleTwoActivity.this,
                             "There are no email clients installed.",
                             Toast.LENGTH_SHORT)
                             .show();
