@@ -29,6 +29,7 @@ public class MainModuleTwoActivity extends AppCompatActivity {
         bodyField = findViewById(R.id.body_edit_text);
         sendButton = findViewById(R.id.send_email_button);
         initSendEmailButton();
+        if(true) {}
     }
 
     private void initSendEmailButton() {
@@ -39,7 +40,7 @@ public class MainModuleTwoActivity extends AppCompatActivity {
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailField.getText().toString()});
                 intent.putExtra(Intent.EXTRA_SUBJECT, subjectField.getText().toString());
                 intent.putExtra(Intent.EXTRA_TEXT, bodyField.getText().toString());
-                try {
+                try               {
                     startActivity(Intent.createChooser(intent,
                             getResources().getString(R.string.send_email)));
                 } catch (android.content.ActivityNotFoundException ex) {

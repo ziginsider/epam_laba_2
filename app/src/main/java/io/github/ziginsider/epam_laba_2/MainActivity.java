@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.support.design.widget.Snackbar;
 
 /**
  * @author Alex Kisel
@@ -21,12 +22,14 @@ public class MainActivity extends AppCompatActivity {
     private static final String PERMISSION_NAME = "io.github.ziginsider.module_2.PERMISSION";
     private static final String MODULE_TWO_ACTION = "io.github.ziginsider.module_2.ACTION";
 
+    private View mainLayout;
     private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainLayout = findViewById(R.id.main_layout);
         button = findViewById(R.id.button);
         initRequestPermissionButton();
     }
@@ -56,14 +59,33 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (ContextCompat.checkSelfPermission(MainActivity.this, PERMISSION_NAME)
                         != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(MainActivity.this,
-                            new String[]{PERMISSION_NAME},
-                            REQUEST_PERMISSION);
+                    requestLaunchActivityPermission();
                 } else {
                     launchModuleTwoActivity();
                 }
             }
         });
+    }
+
+    private void requestLaunchActivityPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, PERMISSION_NAME)) {
+            Snackbar.make(mainLayout, R.string.permission_launch_rationale,
+                    Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.ok, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ActivityCompat.requestPermissions(MainActivity.this,
+                                    new String[]{PERMISSION_NAME},
+                                    REQUEST_PERMISSION);
+                        }
+                    })
+                    .show();
+        } else {
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{PERMISSION_NAME},
+                    REQUEST_PERMISSION);
+        }
+
     }
 
     private void launchModuleTwoActivity() {
