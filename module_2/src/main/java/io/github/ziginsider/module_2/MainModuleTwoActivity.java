@@ -17,6 +17,7 @@ import android.widget.EditText;
  * <p>Clicking the button launches an {@link Intent} to send an email with predefined
  * addresses field, email subject and email text.</p>
  *
+ * @author Alex Kisel
  * @since 2018-03-09
  */
 public class MainModuleTwoActivity extends AppCompatActivity {
