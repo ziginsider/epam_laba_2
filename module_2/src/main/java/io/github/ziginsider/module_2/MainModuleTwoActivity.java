@@ -1,6 +1,7 @@
 package io.github.ziginsider.module_2;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,26 +30,19 @@ public class MainModuleTwoActivity extends AppCompatActivity {
         bodyField = findViewById(R.id.body_edit_text);
         sendButton = findViewById(R.id.send_email_button);
         initSendEmailButton();
-        if(true) {}
     }
 
     private void initSendEmailButton() {
         sendButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailField.getText().toString()});
-                intent.putExtra(Intent.EXTRA_SUBJECT, subjectField.getText().toString());
-                intent.putExtra(Intent.EXTRA_TEXT, bodyField.getText().toString());
-                try               {
-                    startActivity(Intent.createChooser(intent,
-                            getResources().getString(R.string.send_email)));
-                } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(MainModuleTwoActivity.this,
-                            "There are no email clients installed.",
-                            Toast.LENGTH_SHORT)
-                            .show();
-                }
+                Intent intent = new Intent(Intent.ACTION_SENDTO);
+                String uriText =
+                        "mailto:" + emailField.getText().toString() +
+                        "?subject=" + Uri.encode(subjectField.getText().toString()) +
+                        "&body=" + Uri.encode(bodyField.getText().toString());
+                Uri uri = Uri.parse(uriText);
+                intent.setData(uri);
+                startActivity(intent);
             }
         });
     }
