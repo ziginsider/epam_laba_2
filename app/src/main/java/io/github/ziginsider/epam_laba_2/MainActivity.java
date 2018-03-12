@@ -1,5 +1,6 @@
 package io.github.ziginsider.epam_laba_2;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -13,6 +14,21 @@ import android.widget.Toast;
 import android.support.design.widget.Snackbar;
 
 /**
+ * Activity that demonstrates requesting runtime permission for launching another Activity.
+ * <p>
+ * <p>Layout of this Activity contains one {@link Button}.
+ * Clicking this button starts the permission request and expects result in
+ * method {@link MainActivity#onRequestPermissionsResult(int, String[], int[])}.
+ * If the result is successful, the {@link MainActivity#launchModuleTwoActivity()}
+ * is invoked. This method launches another Activity via Intent with a certain ACTION.
+ * This ACTION is contained in a variable {@link MainActivity#MODULE_TWO_ACTION}.</p>
+ * <p>
+ * <p>Permission is requested in the method {@link MainActivity#requestLaunchActivityPermission()}.
+ * This method calls {@link ActivityCompat#shouldShowRequestPermissionRationale(Activity, String)},
+ * that returns true if the user has previously denied the request. In this case user is shown
+ * Snackbar with an explanation. After the user sees the explanation, try again to request
+ * the permission. </p>
+ *
  * @author Alex Kisel
  * @since 2018-03-09
  */

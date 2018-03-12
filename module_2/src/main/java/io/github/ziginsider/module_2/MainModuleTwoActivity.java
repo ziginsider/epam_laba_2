@@ -7,10 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 /**
- * @author Alex Kisel
+ * Launcher Activity which protected by a dangerous permission.
+ *
+ * <p>Layout of this Activity contains three {@link EditText} (email address field,
+ * email subject field, mail text-body field) and one {@link Button} to send a email.</p>
+ *
+ * <p>Clicking the button launches an {@link Intent} to send an email with predefined
+ * addresses field, email subject and email text.</p>
+ *
  * @since 2018-03-09
  */
 public class MainModuleTwoActivity extends AppCompatActivity {
@@ -24,7 +30,6 @@ public class MainModuleTwoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_module_two);
-
         emailField = findViewById(R.id.email_edit_text);
         subjectField = findViewById(R.id.subject_edit_text);
         bodyField = findViewById(R.id.body_edit_text);
