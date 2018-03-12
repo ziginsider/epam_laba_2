@@ -15,14 +15,14 @@ import android.support.design.widget.Snackbar;
 
 /**
  * Activity that demonstrates requesting runtime permission for launching another Activity.
- * <p>
+ *
  * <p>Layout of this Activity contains one {@link Button}.
  * Clicking this button starts the permission request and expects result in
  * method {@link MainActivity#onRequestPermissionsResult(int, String[], int[])}.
  * If the result is successful, the {@link MainActivity#launchModuleTwoActivity()}
  * is invoked. This method launches another Activity via Intent with a certain ACTION.
  * This ACTION is contained in a variable {@link MainActivity#MODULE_TWO_ACTION}.</p>
- * <p>
+ *
  * <p>Permission is requested in the method {@link MainActivity#requestLaunchActivityPermission()}.
  * This method calls {@link ActivityCompat#shouldShowRequestPermissionRationale(Activity, String)},
  * that returns true if the user has previously denied the request. In this case user is shown
