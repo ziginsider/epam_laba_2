@@ -43,9 +43,9 @@ public class MainModuleTwoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
                 String uriText =
-                        "mailto:" + emailField.getText().toString() +
-                        "?subject=" + Uri.encode(subjectField.getText().toString()) +
-                        "&body=" + Uri.encode(bodyField.getText().toString());
+                        "mailto:" + emailField.getText().toString()
+                        + "?subject=" + Uri.encode(subjectField.getText().toString())
+                        + "&body=" + Uri.encode(bodyField.getText().toString());
                 Uri uri = Uri.parse(uriText);
                 intent.setData(uri);
                 startActivity(intent);
